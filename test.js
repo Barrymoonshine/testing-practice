@@ -1,6 +1,7 @@
 const capitalize = require('./functions/capitalize');
 const reverseString = require('./functions/reverseString');
 const calculator = require('./functions/calculator');
+const caesarCipher = require('./functions/caesarCipher');
 
 test('the fist letter of a string is capitalized', () => {
   expect(capitalize('hello')).toBe('Hello');

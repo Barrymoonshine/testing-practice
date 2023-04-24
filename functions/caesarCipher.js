@@ -3,17 +3,10 @@ const checkForPunctuation = (string) =>
 
 const checkForUpperCase = (string) => /[A-Z]/.test(string);
 
-const checkForPunctuation = (string) =>
-  /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g.test(string);
-
-const checkForUpperCase = (string) => /[A-Z]/.test(string);
-
 const caesarCipher = (string, shift) => {
   // Edge case, check if string contains punctuation
 
-  const CipherFactory = (num, caps) => {
-    return { num, caps };
-  };
+  const CipherFactory = (num, caps) => ({ num, caps });
 
   const numArray = [];
   let cipherString = '';
@@ -47,46 +40,55 @@ const caesarCipher = (string, shift) => {
     z: 26,
   };
 
-  // converts the string into an array of numbers
+  // converts the string into an object with a number and caps flag
   for (let i = 0; i < string.length; i += 1) {
     // Keeping any punctuation
     if (checkForPunctuation(string.charAt(i))) {
       numArray.push(string.charAt(i));
     }
-    // Caps flag
-    if (checkForUpperCase(string.charAt(i))) {
-      let newChar = CipherFactory();
-      numArray.push(`${letterNumObj[string.charAt(i)]}CAP`);
+    // Check for flag
+    else if (checkForUpperCase(string.charAt(i))) {
+      const newChar = CipherFactory(
+        letterNumObj[string.charAt(i).toLowerCase()],
+        string.charAt(i)
+      );
+      numArray.push(newChar);
     }
-    numArray.push(letterNumObj[string.charAt(i)]);
+    // lowercase letter, stops undefined being pushed into array
+    else if (string.charAt(i) !== undefined) {
+      numArray.push(letterNumObj[string.charAt(i)]);
+    }
   }
-
-  console.log(numArray);
 
   // Loops through the array of numbers, adds shift to each number
   // and converts the number into letter which is added onto a new string
   numArray.forEach((item) => {
     // Account for caps
-    if (item.includes('CAP')) {
-      const removedString = item.replace('CAP', '');
-      const num = parseInst(removedString);
-      const capsCipherLetter = toUpperCase(
-        Object.keys(letterNumObj).find(
+    if (typeof item === 'object') {
+      const { num } = item;
+      let capsCipherLetter = '';
+      // Caps Z
+      if (num === 26) {
+        capsCipherLetter = Object.keys(letterNumObj).find(
+          (key) => letterNumObj[key] === shift
+        );
+      } else {
+        capsCipherLetter = Object.keys(letterNumObj).find(
           (key) => letterNumObj[key] === num + shift
-        )
-      );
-      cipherString += capsCipherLetter;
+        );
+      }
+      cipherString += capsCipherLetter.toUpperCase();
     }
     // Account for punctuation
-    if (checkForPunctuation(item)) {
+    else if (checkForPunctuation(item)) {
       cipherString += item;
     }
-    // Account for the letter z
-    if (checkForPunctuation === 26) {
+    // Account for lower case z
+    else if (item === 26) {
       cipherString += Object.keys(letterNumObj).find(
         (key) => letterNumObj[key] === shift
       );
-    } else {
+    } else if (typeof item !== 'object' && item !== undefined) {
       cipherString += Object.keys(letterNumObj).find(
         (key) => letterNumObj[key] === item + shift
       );
@@ -95,7 +97,5 @@ const caesarCipher = (string, shift) => {
 
   return cipherString;
 };
-
-console.log(caesarCipher('Hello!', 1)); //Ifmmp!
 
 module.exports = caesarCipher;

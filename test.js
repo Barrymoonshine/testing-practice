@@ -2,6 +2,7 @@ const capitalize = require('./functions/capitalize');
 const reverseString = require('./functions/reverseString');
 const calculator = require('./functions/calculator');
 const caesarCipher = require('./functions/caesarCipher');
+const analyzeArray = require('./functions/analyzeArray');
 
 test('The fist letter of a string is capitalized', () => {
   expect(capitalize('hello')).toBe('Hello');
@@ -25,4 +26,13 @@ test('Cipher is being applied correctly', () => {
   expect(caesarCipher('CamelCase', 7)).toBe('JhtlsJhzl');
   // Test punctuation
   expect(caesarCipher('TheBangOperator!', 3)).toBe('WkhEdqjRshudwru!');
+});
+
+test('Array is analyzed correctly', () => {
+  expect(analyzeArray([1, 8, 3, 4, 2, 6])).toStrictEqual({
+    average: 4,
+    min: 1,
+    max: 8,
+    length: 6,
+  });
 });

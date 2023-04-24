@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1682327982580" clover="3.2.0">
-  <project timestamp="1682327982580" name="All files">
-    <metrics statements="52" coveredstatements="50" conditionals="18" coveredconditionals="15" methods="16" coveredmethods="15" elements="86" coveredelements="80" complexity="0" loc="52" ncloc="52" packages="1" files="4" classes="4"/>
+<coverage generated="1682331275058" clover="3.2.0">
+  <project timestamp="1682331275058" name="All files">
+    <metrics statements="61" coveredstatements="59" conditionals="18" coveredconditionals="15" methods="18" coveredmethods="17" elements="97" coveredelements="91" complexity="0" loc="61" ncloc="61" packages="1" files="5" classes="5"/>
+    <file name="analyzeArray.js" path="/home/nick/repos/testing-practice/functions/analyzeArray.js">
+      <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="4" count="1" type="stmt"/>
+      <line num="5" count="6" type="stmt"/>
+      <line num="9" count="1" type="stmt"/>
+      <line num="11" count="1" type="stmt"/>
+      <line num="13" count="1" type="stmt"/>
+      <line num="15" count="1" type="stmt"/>
+      <line num="23" count="1" type="stmt"/>
+    </file>
     <file name="caesarCipher.js" path="/home/nick/repos/testing-practice/functions/caesarCipher.js">
       <metrics statements="36" coveredstatements="34" conditionals="18" coveredconditionals="15" methods="9" coveredmethods="8"/>
       <line num="1" count="1" type="stmt"/>
